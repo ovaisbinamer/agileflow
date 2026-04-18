@@ -10,7 +10,6 @@ import authRoutes from './routes/authRoutes.js';
 import boardRoutes from './routes/boardRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 import inviteRoutes from './routes/inviteRoutes.js';
-import paymentRoutes from './routes/paymentRoutes.js';
 
 dotenv.config();
 
@@ -64,16 +63,12 @@ io.on('connection', (socket) => {
 
 app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173' }));
 
-// Raw body for Stripe webhook (must be before express.json())
-app.use('/api/payments/webhook', express.raw({ type: 'application/json' }));
-
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/boards', boardRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/invites', inviteRoutes);
-app.use('/api/payments', paymentRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'AgileFlow API is running' }));
 

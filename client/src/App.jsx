@@ -7,7 +7,6 @@ import DashboardPage from './pages/DashboardPage';
 import BoardPage from './pages/BoardPage';
 import LandingPage from './pages/LandingPage';
 import AcceptInvitePage from './pages/AcceptInvitePage';
-import PaymentSuccessPage from './pages/PaymentSuccessPage';
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -39,9 +38,6 @@ const AppRoutes = () => {
 
         {/* Public invite accept — redirects to login if not authenticated */}
         <Route path="/invite/:token" element={<AcceptInvitePage />} />
-
-        {/* Stripe payment success */}
-        <Route path="/payment/success" element={<PaymentSuccessPage />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
